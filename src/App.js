@@ -10,10 +10,11 @@ class App extends Component {
         seconds: 0,
         minutes: 0,
         running: false
-    }
-    this._handleStartClick = this._handleStartClick.bind(this)
-    this._handleStopClick = this._handleStopClick.bind(this)
-    this._handleResetClick = this._handleResetClick.bind(this)
+    };
+    this._handleStartClick = this._handleStartClick.bind(this);
+    this._handleStopClick = this._handleStopClick.bind(this);
+    this._handleResetClick = this._handleResetClick.bind(this);
+    this._zeroPad = this._zeroPad.bind(this);
   }
 
   _handleStartClick(){
@@ -33,13 +34,13 @@ class App extends Component {
       let seconds = this.state.seconds;
       let minutes = this.state.minutes;
       if(millis === 10){
-          millis = 0
+          millis = 0;
           seconds = seconds + 1
       }
       if(seconds === 60){
-          millis = 0
-          seconds = 0
-          minutes = minutes + 1
+          millis = 0;
+          seconds = 0;
+          minutes = minutes + 1;
       }
       this.setState({
           millis: millis,
@@ -47,6 +48,11 @@ class App extends Component {
           minutes: minutes
       })
   }
+
+  // Add a zero for the first  part
+    _zeroPad(value){
+      return value<10 ? `0${value}` : value;
+    }
 
   // Only if running, stop teh interval
     _handleStopClick(){
@@ -73,9 +79,9 @@ class App extends Component {
           <div className="display">
             <div className="state">'Status: running' </div>
             <div className="numbers">
-              <span className="mins">{this.state.minutes}: </span>
-              <span className="secs"> {this.state.seconds} </span>
-              <span className="millis"> .{this.state.millis} </span>
+              <span className="mins">{this._zeroPad(this.state.minutes)}: </span>
+              <span className="secs"> {this._zeroPad(this.state.seconds)} </span>
+              <span className="millis"> .{this._zeroPad(this.state.millis)} </span>
             </div>
           </div>
 

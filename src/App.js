@@ -18,16 +18,16 @@ class App extends Component {
           <div className="display">
             <div className="state">'Status: running' </div>
             <div className="numbers">
-              <span className="mins"> 0: </span>
-              <span className="secs"> 05 </span>
-              <span className="millis"> .04 </span>
+              <span className="mins">{this.state.minutes}: </span>
+              <span className="secs"> {this.state.seconds} </span>
+              <span className="millis"> .{this.state.millis} </span>
             </div>
           </div>
 
         <div className="actions">
-            <button className="btn start" > Start </button>
-            <button className="btn stop" > Stop </button>
-            <button className="btn rst" > Reset </button>
+            <button className="btn start" onClick={()=> console.log("Start")}> Start </button>
+            <button className="btn stop" onClick={()=> console.log("Stop")}> Stop </button>
+            <button className="btn rst" onClick={()=> console.log("Reset")}> Reset </button>
         </div>
        </div>
     );

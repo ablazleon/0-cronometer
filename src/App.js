@@ -12,11 +12,11 @@ class App extends Component {
         running: false
     }
     this._handleStartClick = this._handleStartClick.bind(this)
+    this._handleStopClick = this._handleStopClick.bind(this)
+    this._handleResetClick = this._handleResetClick.bind(this)
   }
 
   _handleStartClick(){
-      console.log("Start2");
-
       // If the state is not running
 
       if(!this.state.running) {
@@ -48,6 +48,25 @@ class App extends Component {
       })
   }
 
+  // Only if running, stop teh interval
+    _handleStopClick(){
+      if(this.state.running){
+          clearInterval(this.interval)
+          this.setState({running: false})
+      }
+    }
+
+    _handleResetClick(){
+
+            //Stop
+            this._handleStopClick()
+            this.setState({
+                millis: 0,
+                seconds: 0,
+                minutes: 0
+            })
+    }
+
   render() {
     return (
       <div className="App">
@@ -62,8 +81,8 @@ class App extends Component {
 
         <div className="actions">
             <button className="btn start" onClick={this._handleStartClick}> Start </button>
-            <button className="btn stop" onClick={()=> console.log("Stop")}> Stop </button>
-            <button className="btn rst" onClick={()=> console.log("Reset")}> Reset </button>
+            <button className="btn stop" onClick={this._handleStopClick}> Stop </button>
+            <button className="btn rst" onClick={this._handleResetClick}> Reset </button>
         </div>
        </div>
     );

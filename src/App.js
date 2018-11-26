@@ -3,6 +3,15 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+        millis: 0,
+        seconds: 0,
+        minutes: 0,
+        running: true
+    }
+  }
   render() {
     return (
       <div className="App">
